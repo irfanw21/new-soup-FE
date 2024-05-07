@@ -1,0 +1,38 @@
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    padding-right: 50px;
+    padding-left: 50px;
+}
+
+.logo {
+    margin-right: 10px;
+}
+
+.loginnavbar-button {
+    width: 140px;
+    border-radius: 8px;
+    padding: 10px 20px;
+    background-color: white;
+    border: 1px solid #5B4947;
+    color: #5B4947;
+    font-family: 'Montserrat, sans-serif';
+}
+
+.login-button:hover {
+    background-color: white;
+    border: 1px solid #5B4947;
+}
+
+.registernavbar-button {
+    width: 140px;
+    padding: 10px 20px;
+    border-radius: 8px;
+    background-color: #EA9E1F;
+    border: none;
+    font-family: 'Montserrat, sans-serif';
+}
+
+.register-button:hover {
+    background-color: #EA9E1F;
+}

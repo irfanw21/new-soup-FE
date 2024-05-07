@@ -1,0 +1,81 @@
+/* Import external fonts */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+
+/* Reset and global styles */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+}
+
+.register-page {
+    overflow-x: hidden;
+}
+
+/* Container for the login form */
+.register-container {
+    width: 616px;
+    height: 399px;
+    position: absolute;
+    top: 6%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 40px;
+    border: none;
+    background-color: #ffffff;
+}
+
+/* Styles for welcome text */
+.welcome-text {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 24px;
+    font-weight: 500;
+    text-align: left;
+    color: #5B4947;
+    margin-bottom: 16px;
+}
+
+/* Styles for login prompt text */
+.register-prompt {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    text-align: left;
+    color: #4F4F4F;
+    margin-bottom: 40px;
+}
+
+/* Input field styles */
+.input-register {
+    width: 616px;
+    height: 34px;
+    padding: 8px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    border: 1px solid #CFD6E5;
+    background-color: #FFFFFF;
+}
+
+/* Styles for the login button */
+.register-button {
+    width: 140px;
+    height: 38px;
+    padding: 10px 0;
+    border-radius: 8px;
+    background-color: #ffc107;
+    border: none;
+    cursor: pointer;
+    display: block;
+    margin: 24px 0 0 auto; /* Adjusted to create a 24px gap above the button */
+}
+
+.register-button:hover {
+    background-color: #e0a800;
+}
+
+/* Styles for the signup prompt */
+.register-loginhere {
+    text-align: center;
+    margin-top: 20px;
+}

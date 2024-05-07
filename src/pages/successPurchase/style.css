@@ -1,0 +1,93 @@
+.email-confirmation {
+    margin-top: 44px;
+}
+
+.flex {
+    display: flex;
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.items-center {
+    align-items: center;
+}
+
+.ml-50{
+    margin-left: 50px;
+}
+
+.mr-10 {
+    margin-right: 10px;
+}
+
+.mt-40 {
+    margin-top: 40px;
+}
+
+.mt-8 {
+    margin-top: 8px;
+}
+
+.px-24 {
+    padding-left: 24px;
+    padding-right: 24px;
+}
+
+.py-16 {
+    padding-top: 16px;
+    padding-bottom: 16px;
+}
+
+.text-24 {
+    font-size: 24px;
+}
+
+.text-16 {
+    font-size: 16px;
+}
+
+.font-400 {
+    font-weight: 400;
+}
+
+.font-500 {
+    font-weight: 500;
+}
+
+.font-600 {
+    font-weight: 600;
+}
+
+.text-brown {
+    color: #5B4947;
+}
+
+.text-gray-light {
+    color: #4F4F4F;
+}
+
+.text-white {
+    color: #ffffff;
+}
+
+.bg-green {
+    background-color: #226957;
+}
+
+.bg-yellow{
+    background-color: #FABC1D;
+}
+
+.rounded-6 {
+    border-radius: 6px;
+}
+
+.border-none {
+    border: none;
+}

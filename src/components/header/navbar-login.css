@@ -1,0 +1,66 @@
+/* Navbar styles */
+.navbar-login {
+    width: 1200px; /* Fixed width */
+    height: 86px; /* Height */
+    padding: 8px 50px; /* Padding */
+    background-color: #fff; /* Black background */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: auto; /* Center the navbar */
+    margin-right: auto; /* Center the navbar */
+  }
+  
+  .navbar-logo img {
+    width: 53.57px; /* Width */
+    height: 50px; /* Height */
+  }
+  
+  .navbar-button {
+    padding: 10px 20px; /* Padding */
+    border-radius: 8px 0 0 0; /* Border radius */
+    border: 1px solid transparent; /* Border */
+    font-family: 'Montserrat', sans-serif; /* Font family */
+    font-size: 16px; /* Font size */
+    font-weight: 500; /* Font weight */
+    line-height: 19.5px; /* Line height */
+    text-align: center; /* Text align */
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s; /* Transition for hover effects */
+  }
+  
+  .navbar-button.login {
+    width: 175px; /* Width */
+    height: 40px; /* Height */
+    padding: 10px 20px;
+    border-radius: 8px;
+    background-color: #fff; /* Background color */
+    border: 1px solid #5B4947;
+    color: #000; /* Text color */
+  }
+  
+  .navbar-button.register {
+    width: 175px; /* Width */
+    height: 40px; /* Height */
+    margin-left: 40px;
+    padding: 10px 20px;
+    border-radius: 8px;
+    background-color: #FABC1D; /* Background color */
+    color: #000; /* Text color */
+    border: 1px solid #5B4947; /* Border */
+  }
+  
+  .navbar-button:hover {
+    opacity: 0.8; /* Slight transparency on hover */
+  }
+
+  /* Navbar links container */
+.navbar-links {
+    display: flex;
+    justify-content: flex-end; /* Aligns children (buttons) to the end of the container */
+    align-items: center;
+    /* If you want to add some space between the logo and the buttons, you can add padding here */
+    padding-right: 50px; /* Adjust this value as needed */
+  }
+  
+  /* Navbar button */

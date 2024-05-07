@@ -1,0 +1,121 @@
+.body-register {
+    margin-top: 44px;
+}
+
+.flex {
+    display: flex;
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
+.flex-end {
+    justify-content: end;
+}
+
+.flex-start{
+    justify-content: start;
+}
+
+.flex-space-between{
+    justify-content: space-between;
+}
+
+.items-center {
+    align-items: center;
+}
+
+.font-500 {
+    font-weight: 600;
+}
+
+.fotsize-15{
+    font-size: 15px;
+}
+
+.px-10 {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.px-20 {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.py-10 {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.bg-yellow{
+    background-color: #FABC1D;
+}
+
+.bg-white{
+    background-color: white;
+}
+
+.text-brown {
+    color: #5B4947;
+}
+
+.border-none {
+    border: none;
+}
+
+.border-black{
+    border: 1px solid #5B4947;
+}
+
+.rounded-8 {
+    border-radius: 8px;
+}
+
+.button-confirmation{
+    width: 140px;
+    height: 38px;
+    padding: 10px;
+    gap: 10px;
+}
+
+.button-standard{
+    width: 175px;
+    height: 38px;
+    padding: 10px, 20px, 10px, 20px;
+    gap: 10px;
+}
+
+.title {
+    font-weight: 500;
+    font-size: 24px;
+    margin-bottom: 60px;
+}
+
+.cancel-button {
+    &:hover {
+        background-color: white;
+        border: 1px solid #5B4947;
+    }
+    width: 140px;
+    padding: 10px 20px;
+    border-radius: 8px;
+    background-color: white;
+    border: 1px solid #5B4947;
+    color: #5B4947;
+    font-family: 'Montserrat, sans-serif';
+}
+
+.submit-button {
+    &:hover {
+        background-color: #EA9E1F;
+    }
+    width: 140px;
+    border-radius: 8px;
+    padding: 10px 20px;
+    border: none;
+    background-color: #EA9E1F;
+    color: #5B4947;
+    font-family: 'Montserrat, sans-serif';
+}
