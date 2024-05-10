@@ -6,11 +6,12 @@ import { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
 
 const ListMenuKelas = () => {
+    const api = import.meta.env.VITE_URL_API
     const {id} = useParams()
     const [courses, setCourses] = useState([]);
 
     useEffect(() => {
-        fetch(`https://localhost:7012/api/Course/GetByCategoryId?categoryId=${id}`)
+        fetch(`${api}/api/Course/GetByCategoryId?categoryId=${id}`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');

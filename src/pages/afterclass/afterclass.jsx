@@ -3,23 +3,6 @@ import { useState, useEffect } from "react"
 import imageTitle from "../../assets/title-bg.png"
 import interludeBg from "../../assets/interlude-bg.png"
 
-//course
-import chococookies from "../../assets/coursemakan/chococookies.png"
-import greenteacheesecake from "../../assets/coursemakan/green-tea-cheesecake.png"
-import sotobanjar from "../../assets/coursemakan/soto-banjar.png"
-import strawfloat from "../../assets/courseminum/strawberry-float.png"
-import bolognese from "../../assets/coursemakan/spaghetti-bolognese.png"
-
-//category
-import catasian from "../../assets/category_makan/cat-asian.png"
-import catwestern from "../../assets/category_makan/cat-western.png"
-import catjunkfood from "../../assets/category_makan/cat-junkfood.png"
-import cathotdrink from "../../assets/category_minum/cat-hot-drink.png"
-import cateastern from "../../assets/category_makan/cat-eastern.png"
-import catdessert from "../../assets/category_makan/cat-dessert.png"
-import catcookies from "../../assets/category_makan/cat-cookies.png"
-import catcolddrink from "../../assets/category_minum/cat-cold-drink.png"
-
 import HeaderSignIn from "../../components/header/Header-signed-in/navbar-signin"
 import { Link } from 'react-router-dom'
 import {Box, Container , Grid, Paper} from '@mui/material'
@@ -210,7 +193,7 @@ const AfterClass = () => {
             >
                 {courses.map((course) => (
                     <Grid item key  ={course.id} xs={12} sm={6} md={4}>
-                        <Link to={`/list-menu-kelas/`} style={{ textDecoration: 'none' }}>
+                        <Link to={`/detail-kelas/${course.id}`} style={{ textDecoration: 'none' }}>
                         <Paper elevation={0} style={{ padding: 20 }}>
                             <div> <img src={course.img} alt={course.course_name}/> </div>
                             <div style={{

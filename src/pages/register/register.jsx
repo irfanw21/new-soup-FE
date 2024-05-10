@@ -9,8 +9,8 @@ const RegisterPage = () => {
   const [password, setPassword] = useState('');
   const [confirmpassword, setConfirmPassword] = useState('');
   const [passwordMatchError, setPasswordMatchError] = useState(false); // State to manage password match error
+  const api = import.meta.env.VITE_URL_API
   const navigate = useNavigate()
-
   const handleLogin = async (e) => {
     e.preventDefault(); // Prevent the default form submit action
   
@@ -22,7 +22,7 @@ const RegisterPage = () => {
 
     const role = "user";
 
-    const response = await fetch('https://localhost:7012/api/User/CreateUser', {
+    const response = await fetch(`${api}/api/User/CreateUser`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

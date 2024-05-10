@@ -5,36 +5,72 @@ import { Modal, List, ListItem, ListItemText } from '@mui/material';
 import HeaderSignIn from "../../components/header/Header-signed-in/navbar-signin"
 import { Link } from 'react-router-dom';
 
-const Checkout = () => {
 
+const Checkout = () => {
     const [selectedClass, setSelectedClass] = useState([]);
     const [cart, setCart] = useState([])
+    const [user, setUser] = useState([])
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await fetch(`${process.env.VITE_URL_API}/api/Cart/GetAll`);
-                const data = await response.json();
-                setCart(data); // Update cart state with fetched data
-            } catch (error) {
-                console.error('Error fetching data:', error);
+        const fetchData = () => {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                console.error('Token not found in localStorage');
+                return;
             }
+            
+            fetch('https://localhost:7012/api/User/GetUserData', {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log(data);
+                setUser(data);
+    
+                // Fetch cart data after user data is fetched
+                fetchCartData(data.id); // Pass user id to fetch cart data
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
         };
-
+    
         fetchData();
     }, []);
+    
+    const fetchCartData = async (userId) => {
+        try {
+            const response = await fetch(`https://localhost:7012/api/Cart/GetByUserId?userid=${userId}`);
+            const data = await response.json();
+            console.log(data);
+            setCart(data); // Update cart state with fetched data
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    };
+    
+
+
 
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
     const paymentOptions = [
-        { name: 'Gopay', icon: paygopay },
-        { name: 'OVO', icon: payovo },
-        { name: 'DANA', icon: paydana },
-        { name: 'Mandiri', icon: paymandiri },
-        { name: 'BCA', icon: paybca },
-        { name: 'BNI', icon: paybni }
+        { name: 'Gopay', icon: '../images/payment_method/payment-gopay.png' },
+        { name: 'BNI', icon: '../images/payment_method/payment-bni.png' },
+        { name: 'Dana', icon: '../images/payment_method/payment-dana.png' },
+        { name: 'BCA', icon: '../images/payment_method/payment-bca.png' },
+        { name: 'Mandiri', icon: '../images/payment_method/payment-mandiri.png' },
+        { name: 'Mandiri', icon: '../images/payment_method/payment-ovo.png' },
     ];
 
     const handleToggle = (id) => {
@@ -62,9 +98,9 @@ const Checkout = () => {
         <Container>
             <HeaderSignIn/>
 
-            <div>
-                <FormGroup sx={{ borderBottom: "2px solid rgba(0,0,0,0.2)"}}>
-                <FormControlLabel
+            {/* <div>
+                <FormGroup sx={{ borderBottom: "2px solid rgba(0,0,0,0.2)"}}> */}
+                {/* <FormControlLabel
                     control={
                     <Checkbox
                         checked={selectedClass.length === proClass.length}
@@ -136,7 +172,7 @@ const Checkout = () => {
                     </Grid>
                     ))}
                 </Grid>
-            </div>
+            </div> */}
 
             <footer style={{
             display: 'flex',
