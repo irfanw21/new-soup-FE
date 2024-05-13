@@ -32,7 +32,7 @@ if (response.ok) {
   console.log('User authenticated successfully');
   localStorage.setItem('token', token); // Menyimpan token di localStorage
   setIsLoggedIn(true); // Memperbarui state isLoggedIn
-  navigate('/afterkelas'); // Navigasi ke halaman tertentu setelah login berhasil
+  navigate('/afterclass'); // Navigasi ke halaman tertentu setelah login berhasil
 } else {
   // Menangani kesalahan
   console.error('Failed to login');

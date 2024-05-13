@@ -10,13 +10,16 @@
 }
 
 .loginnavbar-button {
-    width: 140px;
-    border-radius: 8px;
-    padding: 10px 20px;
-    background-color: white;
-    border: 1px solid #5B4947;
-    color: #5B4947;
-    font-family: 'Montserrat, sans-serif';
+    padding: 10px 20px; /* Padding */
+    border-radius: 8px 0 0 0; /* Border radius */
+    border: 1px solid transparent; /* Border */
+    font-family: 'Montserrat', sans-serif; /* Font family */
+    font-size: 16px; /* Font size */
+    font-weight: 500; /* Font weight */
+    line-height: 19.5px; /* Line height */
+    text-align: center; /* Text align */
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s; /* Transition for hover effects */
 }
 
 .login-button:hover {

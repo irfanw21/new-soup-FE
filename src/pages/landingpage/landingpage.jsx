@@ -3,7 +3,7 @@ import { useState, useEffect } from "react"
 import imageTitle from "../../assets/title-bg.png"
 import interludeBg from "../../assets/interlude-bg.png"
 
-import HeaderSignIn from "../../components/header/navbar-login"
+import HeaderSignIn from "../../components/header/header-login/navbar-login"
 import { Link } from 'react-router-dom'
 import {Box, Container , Grid, Paper} from '@mui/material'
 import Footer from "../../components/footer"
@@ -13,7 +13,7 @@ import { useParams } from "react-router-dom"
 const LandingPage = () => {
     const [courses, setCourses] = useState([]);
     const [categories, setCategories] = useState([]);
-
+    const api = import.meta.env.VITE_URL_API;
     
     useEffect(() => {
         // Fetch courses
@@ -37,7 +37,7 @@ const LandingPage = () => {
     
     return (
         <Container>
-<HeaderSignIn/>
+        <HeaderSignIn/>
             <Box
                 sx={{
                     display: 'flex',

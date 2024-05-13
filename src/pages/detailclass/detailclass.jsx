@@ -3,12 +3,15 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import HeaderSignIn from '../../components/header/Header-signed-in/navbar-signin';
 import Footer from '../../components/footer';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 const DetailClass = () => {
     const api = import.meta.env.VITE_URL_API
     const { id } = useParams();
     const [course, setCourse] = useState(null);
-    const [courses, setCourses] = useState([])
+    const [courses, setCourses] = useState([]);
+    const [isAdded, setIsAdded] = useState(false);
 
     useEffect(() => {
         // Fetch course details based on the id from the URL
@@ -29,7 +32,19 @@ const DetailClass = () => {
             console.log('Courses:', data);
     })
             .catch(error => console.error('Error fetching courses:', error));
-        }, []);      
+        }, []);
+        
+    const addToCart = async () => {
+        try {
+            const response = await axios.post('/api/cart', cartItem);
+            if (response.status === 200) {
+            setIsAdded(true);
+            console.log('Item added to cart successfully!');
+            }
+        } catch (error) {
+            console.error('Error adding item to cart:', error);
+        }
+    };
 
     if (!course) {
         return <div>Loading...</div>;
@@ -70,6 +85,8 @@ const DetailClass = () => {
                                     width: '233.5px',
                                     fontFamily: 'Montserrat, sans-serif'
                                 }]}
+                                onClick={addToCart}
+                                {...isAdded && <p>Item added to cart!</p>}
                             >
                                 Add to Cart
                             </Button>
@@ -139,30 +156,32 @@ const DetailClass = () => {
 
             {/* Course list grid */}
             <Grid container spacing={2} fontFamily={'Montserrat'}>
-                {/* Mapping through courses */}
-                {filteredCourses.map((course, index) => (
-                    <Grid key={index} xs={12} sm={6} md={4}>
+                {courses.map((course, index) => (
+                  <Grid item key={`${index}`} xs={12} sm={6} md={4}>
+                    <Link to={`/detail-kelas/${course.id}`} style={{ textDecoration: 'none' }}>
                         <Paper elevation={0} style={{ padding: 0 }}>
-                            <div> <img src={course.img} alt={course.course_Name} /> </div>
+                            <div> <img src={course.img}/> </div>
                             <div style={{
-                                fontWeight: 400,
-                                fontSize: '16px',
-                                color: '#828282'
-                            }}> {course.category} </div>
+                                    fontWeight: 400,
+                                    fontSize: '16px',
+                                    color: '#828282'
+                                }}
+                            > {course.description} </div>
                             <div style={{
-                                fontWeight: 600,
-                                width: '320px',
-                                height: '70px',
-                                fontSize: '20px',
-                                color: '#5B4947'
-                            }}> {course.name} </div>
+                                    fontWeight: 600,
+                                    width: '320px',
+                                    height: '70px',
+                                    fontSize: '20px',
+                                    color: '#5B4947'
+                                }}> {course.course_Name} </div>
                             <div style={{
                                 fontWeight: 600,
                                 fontSize: '20px',
                                 color: '#FABC1D',
                                 marginBottom: '24px'
-                            }}> {course.price} </div>
+                            }}>{course.course_price}  </div>
                         </Paper>
+                        </Link>
                     </Grid>
                 ))}
             </Grid>

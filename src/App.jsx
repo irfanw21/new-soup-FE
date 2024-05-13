@@ -12,6 +12,7 @@ import Checkout from './pages/checkout';
 import LandingPage from './pages/landingpage/landingpage';
 import Invoices from './pages/Invoices';
 import Overview from './pages/admin/Overview';
+import MyClass from './pages/myclass';
 
 const App = () => {
   return (
@@ -29,6 +30,7 @@ const App = () => {
         <Route path="/checkout" element={<Checkout/>} />
         <Route path="/landingpage" element={<LandingPage/>} />
         <Route path="/invoices" element={<Invoices/>} />
+        <Route path="/myclass" element={<MyClass/>} />
 
         {/* admin */}
         <Route path='/overview' element={<Overview />} />

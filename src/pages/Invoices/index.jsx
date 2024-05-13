@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { styled } from '@mui/material/styles';
+import { Link, useNavigate } from "react-router-dom";
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
@@ -10,6 +11,9 @@ import Paper from '@mui/material/Paper';
 import { Container } from '@mui/material';
 import HeaderSignIn from "../../components/header/Header-signed-in/navbar-signin";
 import Footer from "../../components/footer";
+import axios from "axios";
+import useUserStore from "../../store/useUserStore";
+import { format } from 'date-fns';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -21,28 +25,40 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
   },
 }));
 
-const StyledTableRow = styled(TableRow)(({ theme }) => ({
-  '&:nth-of-type(odd)': {
-    backgroundColor: theme.palette.action.hover,
-  },
-  '&:last-child td, &:last-child th': {
-    border: 0,
-  },
-}));
-
 const Invoices = () => {
-  const [invoices, setInvoices] = useState([]);
+  const { userData, fetchUserData } = useUserStore();
+  const api = import.meta.env.VITE_URL_API;
+  const navigate = useNavigate();
+  const [invoiceData, setInvoiceData] = useState([]);
+  const [loading, setLoading] = useState(true); // Add loading state
 
   useEffect(() => {
-    // Mocked data
-    const data = [
-      { id: '1', noInvoice: 'SOU00003', date: '12 July 2022', totalcourse: 1, totalprice: 'IDR 450.000' },
-      { id: '2', noInvoice: 'SOU00002', date: '05 February 2022', totalcourse: 2, totalprice: 'IDR 900.000' },
-      { id: '3', noInvoice: 'SOU00001', date: '30 August 2021', totalcourse: 1, totalprice: 'IDR 600.000' },
-    ];
+    const fetchInvoiceData = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        if (token) {
+          await fetchUserData(token, navigate);
+        }
 
-    setInvoices(data);
-  }, []);
+        if (userData && userData.id) { // Check userData before fetching data
+          const response = await axios.get(
+            `${api}/api/Invoice/GetByUserId?userid=${userData.id}`
+          );
+          setInvoiceData(response.data);
+        }
+      } catch (error) {
+        console.error("Error fetching invoice data:", error);
+      } finally {
+        setLoading(false); // Set loading to false after fetching data
+      }
+    };
+
+    fetchInvoiceData();
+  }, [userData, fetchUserData, navigate, api]);
+
+  const handleDetailClick = (invoiceId) => {
+    navigate(`/detail-invoice/${invoiceId}`);
+  };
 
   return (
     <Container>
@@ -51,7 +67,6 @@ const Invoices = () => {
         <Table sx={{ minWidth: 700 }} aria-label="customized table">
           <TableHead>
             <TableRow>
-              <StyledTableCell>No</StyledTableCell>
               <StyledTableCell align="center">No. Invoice</StyledTableCell>
               <StyledTableCell align="center">Date</StyledTableCell>
               <StyledTableCell align="center">Total Course</StyledTableCell>
@@ -60,21 +75,18 @@ const Invoices = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {invoices.map((row, index) => (
-              <StyledTableRow key={row.id}>
-                <StyledTableCell component="th" scope="row">
-                  {index + 1}
-                </StyledTableCell>
-                <StyledTableCell align="center">{row.noInvoice}</StyledTableCell>
-                <StyledTableCell align="center">{row.date}</StyledTableCell>
-                <StyledTableCell align="center">{row.totalcourse}</StyledTableCell>
-                <StyledTableCell align="center">{row.totalprice}</StyledTableCell>
+            {invoiceData.map((invoice) => (
+              <TableRow key={invoice.invoiceId}>
+                <StyledTableCell align="center">{invoice.invoiceNumber}</StyledTableCell>
+                <StyledTableCell align="center">{format(new Date(invoice.invoiceDate), "dd MMMM yyyy")}</StyledTableCell>
+                <StyledTableCell align="center">{invoice.itemCount}</StyledTableCell>
+                <StyledTableCell align="center">{invoice.totalPaid}</StyledTableCell>
                 <StyledTableCell align="center">
-                  <button style={{ border: 'none', backgroundColor: '#FABC1D', width: '180px', height: '37px', borderRadius: '8px' }}>
+                  <button style={{ border: 'none', backgroundColor: '#FABC1D', width: '180px', height: '37px', borderRadius: '8px' }} onClick={() => handleDetailClick(invoice.invoiceId)}>
                     Details
                   </button>
                 </StyledTableCell>
-              </StyledTableRow>
+              </TableRow>
             ))}
           </TableBody>
         </Table>

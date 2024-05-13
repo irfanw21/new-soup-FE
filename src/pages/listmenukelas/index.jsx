@@ -4,6 +4,7 @@ import HeaderSignIn from "../../components/header/Header-signed-in/navbar-signin
 import Footer from "../../components/footer"
 import { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
+import { Link } from 'react-router-dom'
 
 const ListMenuKelas = () => {
     const api = import.meta.env.VITE_URL_API
@@ -82,8 +83,11 @@ const ListMenuKelas = () => {
             </div>
 
             <Grid container spacing={2} fontFamily={'Montserrat'}>
+                
                 {courses.map((course, index) => (
+                    
                   <Grid key={`${index}`} xs={12} sm={6} md={4}>
+                    <Link to={`/detail-kelas/${course.id}`} style={{ textDecoration: 'none' }}>
                         <Paper elevation={0} style={{ padding: 0 }}>
                             <div> <img src={course.img}/> </div>
                             <div style={{
@@ -106,6 +110,7 @@ const ListMenuKelas = () => {
                                 marginBottom: '24px'
                             }}>{course.course_price}  </div>
                         </Paper>
+                        </Link>
                     </Grid>
                 ))}
             </Grid>
