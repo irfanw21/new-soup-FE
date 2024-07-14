@@ -14,11 +14,12 @@ const Input = styled.input`
 `;
 
 const NewPass = () => {
+  const api = import.meta.env.VITE_URL_API;
   useEffect(() => {
     // Your API request logic within useEffect
     const resetPassword = async () => {
       try {
-        const response = await fetch("https://localhost:7012/api/User/ResetPassword", {
+        const response = await fetch(`${api}/api/User/ResetPassword`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

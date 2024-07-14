@@ -26,6 +26,7 @@ const LoginPage = () => {
   })
 });
 
+
 if (response.ok) {
   const responseData = await response.json(); // Mengambil data JSON dari respons
   const token = responseData.token; // Mengambil token dari respons

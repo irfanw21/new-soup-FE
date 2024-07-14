@@ -21,7 +21,7 @@ const LandingPage = () => {
             .then(response => response.json())
             .then(data => {setCourses(data);
             console.log('Courses:', data);
-    })
+        })
             .catch(error => console.error('Error fetching courses:', error));
 
         // Fetch categories

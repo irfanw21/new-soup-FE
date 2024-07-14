@@ -40,7 +40,7 @@ const RegisterPage = () => {
       const data = await response.text();
       console.log(data); // User authenticated successfully
       // Redirect or do something else after successful login
-      navigate('/login')
+      navigate('/Success-purchase')
     } else {
       // Handle errors
       console.error('Failed to login');

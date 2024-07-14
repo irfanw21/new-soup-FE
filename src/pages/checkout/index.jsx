@@ -10,6 +10,7 @@ const Checkout = () => {
     const [selectedClass, setSelectedClass] = useState([]);
     const [cart, setCart] = useState([])
     const [user, setUser] = useState([])
+    const api = import.meta.env.VITE_URL_API;
 
     useEffect(() => {
         const fetchData = () => {
@@ -19,7 +20,7 @@ const Checkout = () => {
                 return;
             }
             
-            fetch('https://localhost:7012/api/User/GetUserData', {
+            fetch(`${api}/api/User/GetUserData`, {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${token}`
@@ -48,7 +49,7 @@ const Checkout = () => {
     
     const fetchCartData = async (userId) => {
         try {
-            const response = await fetch(`https://localhost:7012/api/Cart/GetByUserId?userid=${userId}`);
+            const response = await fetch(`${api}/api/Cart/GetByUserId?userid=${userId}`);
             const data = await response.json();
             console.log(data);
             setCart(data); // Update cart state with fetched data
@@ -57,8 +58,6 @@ const Checkout = () => {
         }
     };
     
-
-
 
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);

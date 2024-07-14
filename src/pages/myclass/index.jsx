@@ -21,7 +21,7 @@ const MyClass = () => {
                   await fetchUserData(token, navigate);
                 }
                 if (userData && userData.id) { // Check userData before fetching data
-                    const response = await axios.get(`${api}/api/MyClass/GetByUserId?userid=${userData.id}`);
+                    const response = await axios.get(`${api}/api/MyClass/GetByUserId?userId=${userData.id}`);
                 setMyClasses(response.data);
             }
             } catch (error) {
